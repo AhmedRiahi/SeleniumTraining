@@ -1,4 +1,4 @@
-package cucumber.login;
+package cucumber;
 
 import cucumber.api.PendingException;
 import cucumber.api.java.After;
