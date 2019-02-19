@@ -6,6 +6,9 @@ import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import helper.PropertiesManager;
+import helper.locator.PageLocator;
+import helper.locator.PageLocatorsParser;
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -17,11 +20,15 @@ public class LoginTest {
     private WebDriver driver;
     private String username;
     private String password;
+    private PageLocator loginPageLocator;
 
     @Before
     public void before(){
         System.setProperty("webdriver.chrome.driver","C:\\soft\\chromedriver_win32\\chromedriver.exe");
         this.driver = new ChromeDriver();
+        PropertiesManager.getInstance().loadProperties();
+        PageLocatorsParser.getInstance().parsePageLocators();
+        this.loginPageLocator = PageLocatorsParser.getInstance().getPageLocatorByName("Login page");
     }
 
     @After
@@ -43,8 +50,8 @@ public class LoginTest {
 
     @When("^user types username and password$")
     public void user_types_username_and_password() throws Throwable {
-        WebElement usernameInput = this.driver.findElement(By.name("uid"));
-        WebElement passwordInput = this.driver.findElement(By.name("password"));
+        WebElement usernameInput = this.driver.findElement(loginPageLocator.getDomElementByName("username").primaryBy());
+        WebElement passwordInput = this.driver.findElement(loginPageLocator.getDomElementByName("password").primaryBy());
 
         usernameInput.sendKeys(this.username);
         passwordInput.sendKeys(this.password);
