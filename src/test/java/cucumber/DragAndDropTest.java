@@ -28,7 +28,6 @@ public class DragAndDropTest {
         System.setProperty("webdriver.chrome.driver","C:\\soft\\chromedriver_win32\\chromedriver.exe");
         this.driver = new ChromeDriver();
         this.driver.get("https://www.seleniumeasy.com/test/drag-and-drop-demo.html");
-
     }
 
     @After
@@ -40,20 +39,19 @@ public class DragAndDropTest {
     public void item(String draggableItemName) throws Throwable {
         this.draggableItemName = draggableItemName;
         this.draggableElement  =this.driver.findElements(By.cssSelector("#todrag > span")).stream().filter(element -> element.getText().equals(draggableItemName)).findAny().get();
-
     }
 
     @When("^user drag and drop the item$")
     public void user_drag_and_drop_the_item() throws Throwable {
         this.targetDraggableElements = this.driver.findElement(By.id("mydropzone"));
         Actions actions = new Actions(this.driver);
-        actions.clickAndHold(this.draggableElement).build().perform();
-        TimeUnit.SECONDS.sleep(5);
-        actions.moveToElement(this.targetDraggableElements).build().perform();
-        TimeUnit.SECONDS.sleep(5);
-        actions.moveByOffset(-1, -1).build().perform();
-        TimeUnit.SECONDS.sleep(5);
-        actions.release().build().perform();
+        actions.clickAndHold(this.draggableElement)
+                .pause(1000)
+                .moveByOffset(-1, -1)
+                .pause(1000)
+                .moveToElement(this.targetDraggableElements)
+                .pause(1000)
+                .release().build().perform();
     }
 
     @Then("^item should be removed from draggable list$")
