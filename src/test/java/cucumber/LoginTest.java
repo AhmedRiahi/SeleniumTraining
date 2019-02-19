@@ -50,8 +50,8 @@ public class LoginTest {
 
     @When("^user types username and password$")
     public void user_types_username_and_password() throws Throwable {
-        WebElement usernameInput = this.driver.findElement(loginPageLocator.getDomElementByName("username").primaryBy());
-        WebElement passwordInput = this.driver.findElement(loginPageLocator.getDomElementByName("password").primaryBy());
+        WebElement usernameInput = this.driver.findElement(loginPageLocator.dom("username").primaryBy());
+        WebElement passwordInput = this.driver.findElement(loginPageLocator.dom("password").primaryBy());
 
         usernameInput.sendKeys(this.username);
         passwordInput.sendKeys(this.password);

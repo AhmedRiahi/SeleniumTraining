@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -16,7 +17,7 @@ public class DomElement {
     private List<DomElementLocator> locators;
 
     public DomElementLocator getPrimaryLocator(){
-        Collections.sort(this.locators,(o1,o2) -> o1.getPriority().compareTo(o2.getPriority()));
+        Collections.sort(this.locators, Comparator.comparing(DomElementLocator::getPriority));
         return this.locators.get(0);
     }
 

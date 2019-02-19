@@ -13,7 +13,7 @@ public class PageLocator {
     private List<DomElement> domElements;
 
 
-    public DomElement getDomElementByName(String name){
+    public DomElement dom(String name){
         return this.domElements.stream().filter(domElement -> domElement.getName().equalsIgnoreCase(name)).findFirst().orElseThrow(() -> new RuntimeException("unknown Dom Element :"+name));
     }
 }
