@@ -30,7 +30,6 @@ public class LoginTest {
     private PageLocator loginPageLocator;
 
 
-
     @Before
     public void before(){
         System.setProperty("webdriver.chrome.driver","C:\\soft\\chromedriver_win32\\chromedriver.exe");
@@ -69,9 +68,8 @@ public class LoginTest {
 
     @When("^user types username and password$")
     public void user_types_username_and_password() throws Throwable {
-        WebElement usernameInput = this.driver.findElement(loginPageLocator.dom("usrname").primaryBy());
+        WebElement usernameInput = this.driver.findElement(loginPageLocator.dom("username").primaryBy());
         WebElement passwordInput = this.driver.findElement(loginPageLocator.dom("password").primaryBy());
-
         usernameInput.sendKeys(this.username);
         passwordInput.sendKeys(this.password);
     }
@@ -85,5 +83,11 @@ public class LoginTest {
     @Then("^user user should be logged correctly$")
     public void user_user_should_be_logged_correctly() throws Throwable {
         Assertions.assertThat(driver.getCurrentUrl()).isEqualTo("http://www.demo.guru99.com/V4/manager/Managerhomepage.php");
+    }
+
+    @Then("^a popup should be displayed with error message \"([^\"]*)\"$")
+    public void a_popup_should_be_displayed_with_error_message(String errorMessage) throws Throwable {
+        Alert alert = this.driver.switchTo().alert();
+        Assertions.assertThat(alert.getText()).isEqualTo(errorMessage);
     }
 }

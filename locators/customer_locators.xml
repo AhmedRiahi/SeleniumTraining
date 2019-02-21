@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageLocator>
+	<name>Customer page</name>
+	<domElements>
+		<name>username</name>
+		<locators>
+				<type>NAME</type>
+				<value>uid</value>
+				<priority>0</priority>
+		</locators>
+	</domElements>
+
+	<domElements>
+		<name>password</name>
+		<locators>
+				<type>NAME</type>
+				<value>password</value>
+				<priority>0</priority>
+		</locators>
+	</domElements>
+</pageLocator>
