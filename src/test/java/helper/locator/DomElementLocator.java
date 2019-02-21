@@ -19,6 +19,8 @@ public class DomElementLocator {
         switch (this.type){
             case ID: return By.id(this.value);
             case NAME: return By.name(this.value);
+            case LINK_TEXT: return By.linkText(this.value);
+            case CSS: return By.cssSelector(this.value);
             default: throw new RuntimeException("Unknow selenium locator type :"+this.type);
         }
     }

@@ -2,10 +2,91 @@
 <pageLocator>
 	<name>Customer page</name>
 	<domElements>
-		<name>username</name>
+		<name>new_customer_button</name>
+		<locators>
+				<type>LINK_TEXT</type>
+				<value>New Customer</value>
+				<priority>0</priority>
+		</locators>
+	</domElements>
+
+	<domElements>
+		<name>customer_name</name>
 		<locators>
 				<type>NAME</type>
-				<value>uid</value>
+				<value>name</value>
+				<priority>0</priority>
+		</locators>
+	</domElements>
+
+	<domElements>
+		<name>gender</name>
+		<locators>
+				<type>NAME</type>
+				<value>rad1</value>
+				<priority>0</priority>
+		</locators>
+	</domElements>
+
+	<domElements>
+		<name>dob</name>
+		<locators>
+				<type>NAME</type>
+				<value>dob</value>
+				<priority>0</priority>
+		</locators>
+	</domElements>
+
+	<domElements>
+		<name>addr</name>
+		<locators>
+				<type>NAME</type>
+				<value>addr</value>
+				<priority>0</priority>
+		</locators>
+	</domElements>
+
+	<domElements>
+		<name>city</name>
+		<locators>
+				<type>NAME</type>
+				<value>city</value>
+				<priority>0</priority>
+		</locators>
+	</domElements>
+
+	<domElements>
+		<name>state</name>
+		<locators>
+				<type>NAME</type>
+				<value>state</value>
+				<priority>0</priority>
+		</locators>
+	</domElements>
+
+	<domElements>
+		<name>pin</name>
+		<locators>
+				<type>NAME</type>
+				<value>pinno</value>
+				<priority>0</priority>
+		</locators>
+	</domElements>
+
+	<domElements>
+		<name>mobile</name>
+		<locators>
+				<type>NAME</type>
+				<value>telephoneno</value>
+				<priority>0</priority>
+		</locators>
+	</domElements>
+
+	<domElements>
+		<name>email</name>
+		<locators>
+				<type>NAME</type>
+				<value>emailid</value>
 				<priority>0</priority>
 		</locators>
 	</domElements>
@@ -15,6 +96,24 @@
 		<locators>
 				<type>NAME</type>
 				<value>password</value>
+				<priority>0</priority>
+		</locators>
+	</domElements>
+
+	<domElements>
+		<name>submit_button</name>
+		<locators>
+				<type>NAME</type>
+				<value>sub</value>
+				<priority>0</priority>
+		</locators>
+	</domElements>
+
+	<domElements>
+		<name>registration_message</name>
+		<locators>
+				<type>CSS</type>
+				<value>.heading3</value>
 				<priority>0</priority>
 		</locators>
 	</domElements>

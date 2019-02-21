@@ -4,5 +4,6 @@ public enum Locators {
     XPATH,
     ID,
     CSS,
-    NAME
+    NAME,
+    LINK_TEXT
 }
