@@ -27,7 +27,7 @@ public class CustomerTest {
 
     @Before
     public void before(){
-        System.setProperty("webdriver.chrome.driver","C:\\soft\\chromedriver_win32\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver","/root/selenium/chromedriver");
         this.driver = new ChromeDriver();
         PropertiesManager.getInstance().loadProperties();
         PageLocatorsParser.getInstance().parsePageLocators();
