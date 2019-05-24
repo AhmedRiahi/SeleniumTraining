@@ -36,6 +36,9 @@ public class CustomerTest {
         options.addArguments("--disable-gpu"); // applicable to windows os only
         options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
         options.addArguments("--no-sandbox"); // Bypass OS security model
+        options.addArguments("--headless");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
         WebDriver driver = new ChromeDriver(options);
         this.driver = new ChromeDriver(options);
         PropertiesManager.getInstance().loadProperties();
