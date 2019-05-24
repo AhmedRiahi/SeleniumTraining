@@ -23,7 +23,7 @@ import java.nio.file.Files;
 import java.util.UUID;
 
 @Slf4j
-public class LoginTest {
+public class Login {
 
     private WebDriver driver;
     private String username;

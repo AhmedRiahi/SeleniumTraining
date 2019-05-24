@@ -20,7 +20,7 @@ import java.nio.file.Files;
 import java.util.Random;
 
 @Slf4j
-public class CustomerTest {
+public class Customer {
 
     private WebDriver driver;
     private PageLocator customerPageLocator;
