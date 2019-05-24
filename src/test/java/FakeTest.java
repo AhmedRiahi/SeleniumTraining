@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.Date;
 
 public class FakeTest {
 
@@ -27,7 +28,7 @@ public class FakeTest {
         WebDriver driver = new ChromeDriver(options);
         driver.get("https://www.google.com");
         File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        File targetFile = new File(  "fake_test" + ".png");
+        File targetFile = new File(  "fake_test"+new Date() + ".png");
         Files.copy(scrFile.toPath(), targetFile.toPath());
     }
 }
