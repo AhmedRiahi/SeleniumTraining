@@ -16,7 +16,7 @@ import java.util.HashMap;
 public class FakeTest {
 
     @Test
-    public void fakeTest() throws IOException {
+    public void fakeTest() throws IOException, InterruptedException {
         System.setProperty("webdriver.chrome.driver","/usr/bin/chromedriver");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized"); // open Browser in maximized mode
@@ -44,5 +44,6 @@ public class FakeTest {
         File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         File targetFile = new File(  "fake_test"+new Date() + ".png");
         Files.copy(scrFile.toPath(), targetFile.toPath());
+        Thread.sleep(5*1000);
     }
 }
