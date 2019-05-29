@@ -49,6 +49,9 @@ public class FakeTest {
         chromePrefs.put("safebrowsing.enabled", false);
         chromePrefs.put("safebrowsing.disable_download_protection", true);
 
+        chromePrefs.put("cmd", "Page.setDownloadBehavior");
+        chromePrefs.put("behavior", "allow");
+
         options.setExperimentalOption("prefs", chromePrefs);
 
 
