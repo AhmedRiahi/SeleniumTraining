@@ -1,17 +1,25 @@
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.junit.Test;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
+
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 public class FakeTest {
 
@@ -43,11 +51,40 @@ public class FakeTest {
         options.setExperimentalOption("prefs", chromePrefs);
 
 
-        WebDriver driver = new ChromeDriver(options);
+        WebDriver driver = this.enableDownload(options,downloadFilepath);
+
         driver.get("https://github.com/AhmedRiahi/SeleniumTraining/archive/master.zip");
         File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         File targetFile = new File(  "fake_test"+new Date() + ".png");
         Files.copy(scrFile.toPath(), targetFile.toPath());
         Thread.sleep(5*1000);
+    }
+
+
+    public ChromeDriver enableDownload(ChromeOptions options,String path) throws IOException {
+        ChromeDriverService driverService = ChromeDriverService.createDefaultService();
+
+        ChromeDriver driver = new ChromeDriver(driverService, options);
+
+        Map<String, Object> commandParams = new HashMap<>();
+        commandParams.put("cmd", "Page.setDownloadBehavior");
+
+        Map<String, String> params = new HashMap<>();
+        params.put("behavior", "allow");
+        params.put("downloadPath", path);
+        commandParams.put("params", params);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        HttpClient httpClient = HttpClientBuilder.create().build();
+
+        String command = objectMapper.writeValueAsString(commandParams);
+
+        String u = driverService.getUrl().toString() + "/session/" + driver.getSessionId() + "/chromium/send_command";
+
+        HttpPost request = new HttpPost(u);
+        request.addHeader("content-type", "application/json");
+        request.setEntity(new StringEntity(command));
+        httpClient.execute(request);
+        return driver;
     }
 }
