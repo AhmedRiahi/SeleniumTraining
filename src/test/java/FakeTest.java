@@ -80,7 +80,7 @@ public class FakeTest {
         String command = objectMapper.writeValueAsString(commandParams);
 
         String u = driverService.getUrl().toString() + "/session/" + driver.getSessionId() + "/chromium/send_command";
-
+        System.out.println(u);
         HttpPost request = new HttpPost(u);
         request.addHeader("content-type", "application/json");
         request.setEntity(new StringEntity(command));
