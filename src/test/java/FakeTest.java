@@ -26,6 +26,7 @@ public class FakeTest {
 
     @Test
     public void fakeTest() throws IOException, InterruptedException {
+
         System.setProperty("webdriver.chrome.driver","/usr/bin/chromedriver");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized"); // open Browser in maximized mode
@@ -42,6 +43,8 @@ public class FakeTest {
         options.addArguments("--disable-web-security");
 
         String downloadFilepath = "/root/download/";
+        File file = new File(downloadFilepath+"fake_file"+Math.random());
+        file.createNewFile();
 
         options.addArguments("download.default_directory="+downloadFilepath);
         HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
