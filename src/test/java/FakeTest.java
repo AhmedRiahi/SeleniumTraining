@@ -1,5 +1,6 @@
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -84,7 +85,8 @@ public class FakeTest {
         HttpPost request = new HttpPost(u);
         request.addHeader("content-type", "application/json");
         request.setEntity(new StringEntity(command));
-        httpClient.execute(request);
+        HttpResponse response = httpClient.execute(request);
+        System.out.println(response.toString());
         return driver;
     }
 }
