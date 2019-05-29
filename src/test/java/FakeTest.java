@@ -4,11 +4,14 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Date;
+import java.util.HashMap;
 
 public class FakeTest {
 
@@ -25,7 +28,18 @@ public class FakeTest {
         options.addArguments("--headless");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
-        WebDriver driver = new ChromeDriver(options);
+
+        String downloadFilepath = "/root/download";
+        HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+        chromePrefs.put("profile.default_content_settings.popups", 0);
+        chromePrefs.put("download.default_directory", downloadFilepath);
+
+        options.setExperimentalOption("prefs", chromePrefs);
+        DesiredCapabilities cap = DesiredCapabilities.chrome();
+        cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+        cap.setCapability(ChromeOptions.CAPABILITY, options);
+
+        WebDriver driver = new ChromeDriver(cap);
         driver.get("https://github.com/AhmedRiahi/SeleniumTraining/archive/master.zip");
         File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         File targetFile = new File(  "fake_test"+new Date() + ".png");
