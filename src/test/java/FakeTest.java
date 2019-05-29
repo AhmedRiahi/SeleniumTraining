@@ -30,6 +30,8 @@ public class FakeTest {
         options.addArguments("--disable-dev-shm-usage");
 
         String downloadFilepath = "/root/download/";
+
+        options.addArguments("download.default_directory="+downloadFilepath);
         HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
         chromePrefs.put("profile.default_content_settings.popups", 0);
         chromePrefs.put("download.default_directory", downloadFilepath);
