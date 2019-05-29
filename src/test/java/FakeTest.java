@@ -26,7 +26,7 @@ public class FakeTest {
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
         WebDriver driver = new ChromeDriver(options);
-        driver.get("https://www.google.com");
+        driver.get("https://github.com/AhmedRiahi/SeleniumTraining/archive/master.zip");
         File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         File targetFile = new File(  "fake_test"+new Date() + ".png");
         Files.copy(scrFile.toPath(), targetFile.toPath());
