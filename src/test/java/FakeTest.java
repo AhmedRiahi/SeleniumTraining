@@ -42,7 +42,7 @@ public class FakeTest {
         options.addArguments("--allow-running-insecure-content");
         options.addArguments("--disable-web-security");
 
-        String downloadFilepath = "/root/download/";
+        String downloadFilepath = "/home/download/";
         File file = new File(downloadFilepath+"fake_file"+Math.random());
         file.createNewFile();
 
