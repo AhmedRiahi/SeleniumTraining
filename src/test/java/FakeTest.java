@@ -35,6 +35,10 @@ public class FakeTest {
         HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
         chromePrefs.put("profile.default_content_settings.popups", 0);
         chromePrefs.put("download.default_directory", downloadFilepath);
+        chromePrefs.put("download.prompt_for_download", false);
+        chromePrefs.put("download.directory_upgrade", true);
+        chromePrefs.put("safebrowsing.enabled", false);
+        chromePrefs.put("safebrowsing.disable_download_protection", true);
 
         options.setExperimentalOption("prefs", chromePrefs);
 
