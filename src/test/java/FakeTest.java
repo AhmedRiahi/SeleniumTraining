@@ -37,6 +37,9 @@ public class FakeTest {
         options.addArguments("--headless");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--test-type");
+        options.addArguments("--allow-running-insecure-content");
+        options.addArguments("--disable-web-security");
 
         String downloadFilepath = "/root/download/";
 
